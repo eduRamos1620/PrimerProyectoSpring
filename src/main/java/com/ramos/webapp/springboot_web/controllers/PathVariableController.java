@@ -8,8 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ramos.webapp.springboot_web.models.User;
 import com.ramos.webapp.springboot_web.models.DTO.ParamDto;
+
+import ch.qos.logback.core.pattern.PostCompileProcessor;
+
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -28,6 +35,12 @@ public class PathVariableController {
         json.put("product", product);
         json.put("id", id);
         return json;
+    }
+    
+    @PostMapping("/create")
+    public User create(@RequestBody User user){
+        
+        return user;
     }
     
 }
