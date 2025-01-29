@@ -3,7 +3,9 @@ package com.ramos.webapp.springboot_web.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,8 @@ public class PathVariableController {
     private Integer code;
     @Value("#{${config.valuesMap}}")
     private Map<String, Object> valuesMap;
+    @Autowired
+    private Environment environment;
 
     @GetMapping("/baz/{message}")
     public ParamDto baz(@PathVariable String message){
@@ -58,6 +62,7 @@ public class PathVariableController {
         json.put("listOfValues", listOfValues);
         json.put("username", username);
         json.put("valuesMap", valuesMap); 
+        json.put("message2", environment.getProperty("config.message"));
         return json;
     }
     
